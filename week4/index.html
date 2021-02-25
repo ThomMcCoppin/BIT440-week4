@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletics Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Athletics Tracker</a>
+            <select class="justify-content-end" name="sportselect" id="sport-select">
+                <option value="0">Choose a sport</option>
+                <option value="49">eSports</option>
+                <option value="50">Powerlifting</option>
+                <option value="45">Bowling</option>
+            </select>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div id="story0" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story1" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story2" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story3" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story4" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story5" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story6" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story7" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story8" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+        <div id="story9" class="col-lg-3 col-md-6 col-sm-12">
+            <img class="img-responsive col-12" src="">
+            <h1 class="title"></h1>
+            <p class="description"></p>
+            <button type="button" class="btn btn-primary">Read More</button>
+        </div>
+      </div>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script>
+        var sportValue = 0;
+        var sportSelect = document.getElementById("sport-select");
+        var currentColumn;
+        sportSelect.addEventListener('change', (event) => {
+            sportValue = event.target.value;
+        });
+        function fetchSports(website) {
+            fetch(website)
+                .then(function(response) {
+                    console.log("API" + response);
+                    return response.json();
+                }).then(function(data){
+                    for(var i = 0; i < 10; i++) {
+                        currentColumn = document.getElementById("story" + i);
+                        currentColumn.childNodes[3].innerHTML = data.items[i].title;
+                        currentColumn.childNodes[5].innerHTML = data.items[i].description;
+                        currentColumn.childNodes[1].src = data.items[i].thumbnail;
+                    }
+                });
+        }
+
+        if(sportValue = 49){
+            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D49");
+        }
+        else if(sportValue = 50) {
+            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D50");
+        }
+        else if(sportValue = 45) {
+            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D45");
+        }
+        else {
+            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php");
+        }
+    </script>
+</body>
+</html>
