@@ -90,9 +90,11 @@
         var sportValue = 0;
         var sportSelect = document.getElementById("sport-select");
         var currentColumn;
-        sportSelect.addEventListener('change', (event) => {
+        sportSelect.addEventListener('change', changeSport);
+        function changeSport() {
             sportValue = event.target.value;
-        });
+            checkSport();
+        }
         function fetchSports(website) {
             fetch(website)
                 .then(function(response) {
@@ -107,19 +109,21 @@
                     }
                 });
         }
-
-        if(sportValue = 49){
-            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D49");
-        }
-        else if(sportValue = 50) {
-            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D50");
-        }
-        else if(sportValue = 45) {
-            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D45");
-        }
-        else {
-            fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php");
-        }
+        function checkSport() {
+            if(sportValue = 49){
+                fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D49");
+            }
+            else if(sportValue = 50) {
+                fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D50");
+            }
+            else if(sportValue = 45) {
+                fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php%3FcategoryID%3D45");
+            }
+            else {
+                fetchSports("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.midlandathletics.com%2Frss.php");
+            }
+        }   
+        checkSport();
     </script>
 </body>
 </html>
